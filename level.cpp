@@ -4,6 +4,8 @@
 #include "Graph.h"
 #include "Window.h"
 
+#include <utility> // Needed to use pair constructor
+
 
 using namespace Graph_lib;
 
@@ -17,7 +19,7 @@ private:
 	Button L6_button;
 	Button L7_button;
 	Text Select_level; 
-	ifstream TopScores_in;
+	ifstream TopScores_in {"TopScores_in.txt"};
 public:
 	Level_screen(Point xy, int w, int h, const string& title);
 	void level_3();
@@ -27,29 +29,70 @@ public:
 	void level_7();
 };
 
+// Each level represents a line in the file; Need to implement level in correspondence to line in file 
 void Level_screen::level_3() 
 {
 	string name;
 	double score;
+	TopScores_in >> name; // Reads a string from the file into name
+	TopScores_in >> score; // Reads a double from the file into score
+	
 	pair <string,double> product1; 
-	product1 = make_pair(string TopScores_in,score);
-	cout << product1;
+	product1 = make_pair(name,score); // Constructs a pair from name and score
+	cout << product1.first << endl; // Prints the name
+	cout << product1.second << endl; // Prints the score
 	hide();
 }
 void Level_screen::level_4() 
 {
+	string name;
+	double score;
+	TopScores_in >> name; 
+	TopScores_in >> score; 
+	
+	pair <string,double> product1; 
+	product1 = make_pair(name,score); 
+	cout << product1.first << endl; 
+	cout << product1.second << endl; 
 	hide();
 }
 void Level_screen::level_5() 
 {
+	string name;
+	double score;
+	TopScores_in >> name; 
+	TopScores_in >> score; 
+	
+	pair <string,double> product1; 
+	product1 = make_pair(name,score); 
+	cout << product1.first << endl; 
+	cout << product1.second << endl; 
 	hide();
 }
 void Level_screen::level_6() 
 {
+	string name;
+	double score;
+	TopScores_in >> name; 
+	TopScores_in >> score; 
+	
+	pair <string,double> product1; 
+	product1 = make_pair(name,score); 
+	cout << product1.first << endl; 
+	cout << product1.second << endl;
 	hide();
 }
 void Level_screen::level_7() 
 {
+	string name;
+	double score;
+	TopScores_in >> name; 
+	TopScores_in >> score; 
+	
+	pair <string,double> product1; 
+	product1 = make_pair(name,score); 
+	cout << product1.first << endl; 
+	cout << product1.second << endl; 
 	hide();
 } 
 
@@ -76,7 +119,7 @@ Select_level{Point{x_max()-350,y_max()-200},"Select a level"}
 	attach(L6_button);
 	attach(L7_button);	
 	attach(Select_level);
-	TopScores_in{TopScores_in};
+	TopScores_in;{TopScores_in;};
 }
 
 
