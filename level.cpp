@@ -1,33 +1,10 @@
 #include "std_lib_facilities_4.h"
-#include "Simple_window.h"
 #include "GUI.h"
 #include "Graph.h"
 #include "Window.h"
-
-#include <utility> // Needed to use pair constructor
-
+#include "level.h"
 
 using namespace Graph_lib;
-
-class Level_screen: public Graph_lib::Window{
-	
-
-private:
-	Button L3_button;
-	Button L4_button;
-	Button L5_button;
-	Button L6_button;
-	Button L7_button;
-	Text Select_level; 
-	ifstream TopScores_in {"TopScores_in.txt"};
-public:
-	Level_screen(Point xy, int w, int h, const string& title);
-	void level_3();
-	void level_4();
-	void level_5();
-	void level_6();
-	void level_7();
-};
 
 // Each level represents a line in the file; Need to implement level in correspondence to line in file 
 void Level_screen::level_3() 
@@ -109,7 +86,7 @@ L6_button{Point{300,250},50,50,"Level 6",
 	[](Address, Address pw) {reference_to<Level_screen>(pw).level_6();}},
 L7_button{Point{350,250},50,50,"Level 7",
 	[](Address, Address pw) {reference_to<Level_screen>(pw).level_7();}},
-Select_level{Point{x_max()-350,y_max()-200},"Select a level"}
+Select_level{Point{x_max()-115,y_max()-100},"Select a level"}
 
 
 {
@@ -120,28 +97,5 @@ Select_level{Point{x_max()-350,y_max()-200},"Select a level"}
 	attach(L7_button);	
 	attach(Select_level);
 	TopScores_in;{TopScores_in;};
+	Select_level.set_font_size(40);
 }
-
-
-int main() {
-try{
-	Point t1(100,100);
-	Level_screen win(t1,600,400,"Select Level");
-	
-	 return gui_main();
-	 
-	 return 0;
-	}
-catch (exception& e) {
-	cerr << "exception: " << e.what() << endl;
-	keep_window_open();
-	return 1;
-}
-catch (...) {
-	cerr << "exception\n";
-	keep_window_open();
-	return 2;
-}
-}
-  
-
